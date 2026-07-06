@@ -21,19 +21,16 @@ typedef struct vect3_t
 	float z;
 }vect3_t;
 
-typedef struct link_t
-{
-	const char * name;	
-	//add information
-}link_t;
 
+/*
+A joint relates only two links
+*/
 typedef struct joint_t
 {
 	joint_type_t type;
 	link_t * parent;
 
-	link_t * children;
-	size_t num_children;
+	link_t * child;
 
 	float q;
 
@@ -41,5 +38,21 @@ typedef struct joint_t
 	vect3_t translation;
 
 }joint_t;
+
+
+/*
+A link can have an arbitrary number of joints
+*/
+typedef struct link_t
+{
+	const char * name;	
+	//add information
+
+	joint_t * joints;
+	size_t num_joints;
+
+}link_t;
+
+
 
 #endif
