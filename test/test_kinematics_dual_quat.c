@@ -62,20 +62,47 @@ link_dual_quat_t link_6 =
 	.num_joints = sizeof(l6_joints)/sizeof(joint_dual_quat_t*)
 };
 
-joint_dual_quat_t * l7_joints[] = {&j1_7};
-link_dual_quat_t link_7;
+joint_dual_quat_t * l7_joints[] = {&j1_7, &j7_8};
+link_dual_quat_t link_7 = 
+{
+	.name = "link 7",
+	.joints = l7_joints,
+	.num_joints = sizeof(l7_joints)/sizeof(joint_dual_quat_t*)
+};
 
-joint_dual_quat_t * l8_joints[] = {};
-link_dual_quat_t link_8;
+joint_dual_quat_t * l8_joints[] = {&j7_8, &j8_9, &j8_10, &j8_11};
+link_dual_quat_t link_8 = 
+{
+	.name = "link 8",
+	.joints = l8_joints,
+	.num_joints = sizeof(l8_joints)/sizeof(joint_dual_quat_t*)
+};
 
-joint_dual_quat_t * l9_joints[] = {};
-link_dual_quat_t link_9;
+joint_dual_quat_t * l9_joints[] = {&j8_9};
+link_dual_quat_t link_9 = 
+{
+	.name = "link 9",
+	.joints = l9_joints,
+	.num_joints = sizeof(l9_joints)/sizeof(joint_dual_quat_t*)
+};
 
-joint_dual_quat_t * l10_joints[] = {};
-link_dual_quat_t link_10;
 
-joint_dual_quat_t * l11_joints[] = {};
-link_dual_quat_t link_11;
+joint_dual_quat_t * l10_joints[] = {&j8_10};
+link_dual_quat_t link_10 = 
+{
+	.name = "link 10",
+	.joints = l10_joints,
+	.num_joints = sizeof(l10_joints)/sizeof(joint_dual_quat_t*)
+};
+
+
+joint_dual_quat_t * l11_joints[] = {&j8_11};
+link_dual_quat_t link_11 = 
+{
+	.name = "link 11",
+	.joints = l11_joints,
+	.num_joints = sizeof(l11_joints)/sizeof(joint_dual_quat_t*)
+};
 
 
 
