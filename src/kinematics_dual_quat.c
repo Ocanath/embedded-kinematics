@@ -1,4 +1,4 @@
-#include "kinematics.h"
+#include "kinematics_dual_quat.h"
 #include <stdbool.h>
 
 #include <stdio.h>
