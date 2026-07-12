@@ -34,7 +34,7 @@ struct joint_dual_quat_t
 struct link_dual_quat_t 
 {
     const char         *name;
-    joint_dual_quat_t  *joints;
+    joint_dual_quat_t ** joints;
     size_t              num_joints;
 };
 

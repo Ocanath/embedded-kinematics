@@ -56,22 +56,28 @@ int kin_dfs_dq(link_stack_t * stack, link_dual_quat_t * root)
 
 	while(done == false)
 	{
-		if(cur_link->num_joints == 0)
-		{
-			//we've hit a terminal node. we have to pop something 
-		}
+		bool nochildren = true;
 		for(size_t joint_idx = 0; joint_idx < cur_link->num_joints; joint_idx++)
 		{
 			joint_dual_quat_t * j = &root->joints[joint_idx];
 			
 			if(j->parent == cur_link)
 			{
-				/*
-					We need to use the result of the parent edge (H0_i) to compute the outgoing edges.
-				*/
-				printf("Parent joint: %s\n", j->name);
-			}
+				//this link points to children of the current node
 
+			}
+			else if (j->child == cur_link)
+			{
+				//this is the link that got us here
+			}
+			else
+			{
+				//error! for the joint to be in our list of joints, either the parent or the child must be connected to us. 
+				//Otherwise, it is an orphaned joint!
+				return -1;
+			}
 		}
 	}
+
+	return 0;
 }

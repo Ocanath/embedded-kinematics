@@ -33,7 +33,7 @@ struct joint_mat4_t
 struct link_mat4_t 
 {
     const char    *name;
-    joint_mat4_t  *joints;
+    joint_mat4_t  ** joints;
     size_t         num_joints;
 };
 
