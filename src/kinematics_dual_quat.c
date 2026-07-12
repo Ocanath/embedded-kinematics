@@ -49,7 +49,7 @@ int kin_dfs_dq(stack_dual_quat_t * stack, link_dual_quat_t * root)
 		bool nochildren = true;
 		for(size_t joint_idx = 0; joint_idx < cur_link->num_joints; joint_idx++)
 		{
-			joint_dual_quat_t * j = &root->joints[joint_idx];
+			joint_dual_quat_t * j = &cur_link->joints[joint_idx];
 			
 			if(j->parent == cur_link)
 			{

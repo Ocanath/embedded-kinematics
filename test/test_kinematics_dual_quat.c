@@ -236,6 +236,13 @@ joint_dual_quat_t j8_11 =
 	.result = {},
 };
 
+
+void test_check_tree(void)
+{
+	TEST_ASSERT_EQUAL(link_1.joints[0]->parent, &link_1);
+	TEST_ASSERT_EQUAL(link_1.joints[0]->child, &link_2);
+}
+
 void test_dfs(void)
 {
 	stack_dual_quat_t link_stack;
@@ -243,3 +250,5 @@ void test_dfs(void)
 	TEST_ASSERT_EQUAL(0, rc);
 	rc = kin_dfs_dq(&link_stack, &link_1);
 }
+
+
