@@ -65,6 +65,7 @@ typedef struct link_dual_quat_t  link_dual_quat_t;
 typedef struct joint_dual_quat_t joint_dual_quat_t;
 
 struct joint_dual_quat_t {
+	const char 	* name;
     joint_type_t      type;
     link_dual_quat_t *parent;
     link_dual_quat_t *child;
