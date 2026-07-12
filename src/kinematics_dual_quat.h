@@ -4,6 +4,9 @@
 #include <stdint.h>
 #include <stddef.h>
 
+#define STACK_DEPTH 256	//adjust as needed
+
+
 typedef enum { JOINT_FIXED, JOINT_ROTATIONAL, JOINT_TRANSLATIONAL } joint_type_t;
 
 typedef struct { float a, b, c, d; } quat_f_t;
@@ -37,5 +40,18 @@ struct link_dual_quat_t
     joint_dual_quat_t ** joints;
     size_t              num_joints;
 };
+
+typedef struct stack_dual_quat_t
+{
+	link_dual_quat_t * links[STACK_DEPTH];
+	size_t num_links;
+	size_t depth;
+}stack_dual_quat_t;
+
+int link_push_dq(stack_dual_quat_t * stack, link_dual_quat_t * node);
+int init_stack_dq(stack_dual_quat_t * stack);
+link_dual_quat_t * link_pop_dq(stack_dual_quat_t * stack);
+int kin_dfs_dq(stack_dual_quat_t * stack, link_dual_quat_t * root);
+
 
 #endif

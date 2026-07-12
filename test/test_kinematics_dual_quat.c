@@ -236,8 +236,10 @@ joint_dual_quat_t j8_11 =
 	.result = {},
 };
 
-
 void test_dfs(void)
 {
-
+	stack_dual_quat_t link_stack;
+	int rc = init_stack_dq(&link_stack);
+	TEST_ASSERT_EQUAL(0, rc);
+	rc = kin_dfs_dq(&link_stack, &link_1);
 }
