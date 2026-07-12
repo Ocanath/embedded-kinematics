@@ -63,11 +63,14 @@ int kin_dfs_dq(link_stack_t * stack, link_dual_quat_t * root)
 			
 			if(j->parent == cur_link)
 			{
-				//this link points to children of the current node
-
+				printf("link %s has child: %s\n", cur_link->name, j->child->name);
+				//joint points to children of the current node
+				link_push(stack, j->child);
+				nochildren = false;
 			}
 			else if (j->child == cur_link)
 			{
+				printf("link %s has parent: %s\n", cur_link->name, j->parent);
 				//this is the link that got us here
 			}
 			else
@@ -77,6 +80,11 @@ int kin_dfs_dq(link_stack_t * stack, link_dual_quat_t * root)
 				return -1;
 			}
 		}
+		if(nochildren)
+		{
+			printf("link %s is a leaf\n", cur_link->name);
+		}
+		//pop?
 	}
 
 	return 0;
