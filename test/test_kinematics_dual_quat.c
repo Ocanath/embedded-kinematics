@@ -14,7 +14,7 @@ joint_dual_quat_t j8_10;
 joint_dual_quat_t j8_11;
 
 //provide link connection to each edge
-joint_dual_quat_t * l1_joints[] = {&j1_2, &j1_7};
+joint_dual_quat_t * l1_joints[] = {&j1_7, &j1_2};
 link_dual_quat_t link_1 = 
 {
 	.name = "link 1",
@@ -30,7 +30,7 @@ link_dual_quat_t link_2 =
 	.num_joints = sizeof(l2_joints)/sizeof(joint_dual_quat_t*)
 };
 
-joint_dual_quat_t * l3_joints[] = {&j2_3, &j3_4, &j3_5, &j3_6};
+joint_dual_quat_t * l3_joints[] = {&j2_3, &j3_6, &j3_5, &j3_4};
 link_dual_quat_t link_3 = 
 {
 	.name = "link 3",
@@ -70,7 +70,7 @@ link_dual_quat_t link_7 =
 	.num_joints = sizeof(l7_joints)/sizeof(joint_dual_quat_t*)
 };
 
-joint_dual_quat_t * l8_joints[] = {&j7_8, &j8_9, &j8_10, &j8_11};
+joint_dual_quat_t * l8_joints[] = {&j7_8, &j8_11, &j8_10, &j8_9};
 link_dual_quat_t link_8 = 
 {
 	.name = "link 8",
@@ -239,13 +239,13 @@ joint_dual_quat_t j8_11 =
 
 void test_check_tree(void)
 {
-	TEST_ASSERT_EQUAL(link_1.joints[0]->parent, &link_1);
-	TEST_ASSERT_EQUAL(link_1.joints[0]->child, &link_2);
+	TEST_ASSERT_EQUAL(link_1.joints[1]->child, &link_2);
+	TEST_ASSERT_EQUAL(link_1.joints[1]->parent, &link_1);
 }
 
 void test_dfs(void)
 {
-	stack_dual_quat_t link_stack;
+	stack_dual_quat_t link_stack = {};
 	int rc = init_stack_dq(&link_stack);
 	TEST_ASSERT_EQUAL(0, rc);
 	rc = kin_dfs_dq(&link_stack, &link_1);

@@ -38,9 +38,6 @@ link_dual_quat_t * link_pop_dq(stack_dual_quat_t * stack)
 int kin_dfs_dq(stack_dual_quat_t * stack, link_dual_quat_t * root)
 {
 	bool done = false;
-
-	printf("link %s\n", root->name);
-
 	link_push_dq(stack, root);
 
 	while(done == false)
@@ -50,7 +47,9 @@ int kin_dfs_dq(stack_dual_quat_t * stack, link_dual_quat_t * root)
 		if(cur_link == NULL)
 		{
 			done = true;
+			break;
 		}
+		printf("Current node: \"%s\"\n", cur_link->name);
 		
 		for(size_t joint_idx = 0; joint_idx < cur_link->num_joints; joint_idx++)
 		{
@@ -58,14 +57,14 @@ int kin_dfs_dq(stack_dual_quat_t * stack, link_dual_quat_t * root)
 			
 			if(j->parent == cur_link)
 			{
-				printf("link %s has child: %s\n", cur_link->name, j->child->name);
+				printf("node \"%s\" has child: %s\n", cur_link->name, j->child->name);
 				//joint points to children of the current node
 				link_push_dq(stack, j->child);
 				nochildren = false;
 			}
 			else if (j->child == cur_link)
 			{
-				printf("link %s has parent: %s\n", cur_link->name, j->parent);
+				printf("node \"%s\" has parent: %s\n", cur_link->name, j->parent->name);
 				//this is the link that got us here
 			}
 			else
