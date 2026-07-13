@@ -38,15 +38,20 @@ link_dual_quat_t * link_pop_dq(stack_dual_quat_t * stack)
 int kin_dfs_dq(stack_dual_quat_t * stack, link_dual_quat_t * root)
 {
 	bool done = false;
-	link_dual_quat_t * cur_link = root;
-	
-	printf("link %s\n", cur_link->name);
 
-	link_push_dq(stack, cur_link);
+	printf("link %s\n", root->name);
+
+	link_push_dq(stack, root);
 
 	while(done == false)
 	{
 		bool nochildren = true;
+		link_dual_quat_t * cur_link = link_pop_dq(stack);
+		if(cur_link == NULL)
+		{
+			done = true;
+		}
+		
 		for(size_t joint_idx = 0; joint_idx < cur_link->num_joints; joint_idx++)
 		{
 			joint_dual_quat_t * j = cur_link->joints[joint_idx];
